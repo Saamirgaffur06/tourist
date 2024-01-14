@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html ng-app="wanderlustApp">
+<head>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        .state {
+            background-color:lavender;
+             cursor: pointer;
+             flex-direction: column;
+             align-items: center;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: flex-end; /* This aligns the content to the right */
+            margin: 0; /* Reset any margin */
+             padding: 10px; /* Add spacing between containers */
+             
+        }
+        .state img {
+            width: 50%; /* Set your preferred image width */
+            height: 90%; /* Set your preferred image height */
+        }
+    </style>
+</head>
+<body ng-controller="AppController">
+    <!-- Header Navbar -->
+    <div class="header">
+        <h1 class="animate-header">Wanderlust Tours</h1>
+    </div>
+    
+        <ul class="navbar">
+            
+            <li><a href="About.html">About</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+            <li><a href="Service.html">Service</a></li>
+            <li><a href="Register.html">Ratings</a></li>
+        </ul>
+    </nav>
+    
+
+    <div class="offers-container">
+        
+        <h2 style="color: rgb(32, 30, 30); font-size: 28px; animation: specialAnimation 5s ease infinite;">Wanderlust Blog Welcomes You!!</h2>
+
+        <div class="slideshow">
+            <img ng-src="{{currentImage}}" alt="Slideshow Image">
+        </div>
+    </div>
+    
+
+
+    <!-- Date and Time Container -->
+    <div class="date-time-container">
+        <p>{{currentDateTime | date: 'MMM d, y h:mm:ss a'}}</p>
+    </div>
+
+    <div id="tourist-places" class="tourist-places">
+        <div ng-if="state.showPlaces" ng-repeat="state in states">
+            <i><h2 style="color: white;font-size: 20px;">
+                Tourist Places in {{state.name}}
+                <button class="toggle-button" ng-click="toggleState(state)">
+                    Close
+                </button>
+            </h2></i>
+            <div class="place-grid">
+                <div ng-repeat="place in state.places" class="place-card">
+                    <img ng-src="{{place.image}}" alt="{{place.name}}">
+                    <h3>{{place.name}}</h3>
+                    <p>{{place.description}}</p>
+                    <div class="like-button">
+                        <div class="like-button">
+                            <button ng-click="toggleLike(place)" ng-class="{'liked': place.liked}">
+                              {{ place.liked ? 'Liked' : 'Like' }}
+                            </button>
+                          </div>
+                          
+                      
+                      
+
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="states-container">
+        <div class="state" ng-repeat="state in states">
+            <img ng-src="{{state.image}}" alt="{{state.name}}">
+            <h3>{{state.name}}</h3>
+            <button ng-click="toggleState(state)" class="toggle-button">
+                Explore Places
+            </button>
+        </div>
+    </div>
+
+   
+</body>
+<script>
+    angular.module('wanderlustApp', [])
+        .controller('AppController', function ($scope, $interval,$http) {
+            $scope.slideshowImages = [
+            's1.jpg',
+            's2.jpg',
+            's3.jpg',
+            // Add more image URLs here
+        ];
+        
+        $scope.currentImage = $scope.slideshowImages[0];
+        var imageIndex = 0;
+        $interval(function () {
+            imageIndex = (imageIndex + 1) % $scope.slideshowImages.length;
+            $scope.currentImage = $scope.slideshowImages[imageIndex];
+        }, 5000);
+       
+        // ... (previous AngularJS code) ...
+
+
+
+
+
+
+
+
+            $scope.states = [
+                {
+                    name: 'Tamilnadu',
+                    showPlaces: false,
+                    image: 'tn.jpeg',
+                    places: [
+                        {
+                            name: 'Kodaikanal',
+                            image: 'tn1.jpg',
+                            description: 'A serene hill station famed for its cool climate and pristine lakes in Tamil Nadu.',
+                            liked: false,
+                        },
+                        {
+                            name: 'Sirumalai',
+                            image: 'tn2.jpeg',
+                            description: 'A tranquil hill station with lush forests and coffee plantations near Dindigul, Tamil Nadu.',
+                            likes:0
+                        },
+                        {
+                            name: 'Ooty',
+                            image: 'tn3.jpeg',
+                            description: 'Ooty, also known as Udhagamandalam, is a popular hill station known for its pleasant climate and tea gardens.',
+                            likes:0
+                        },
+                        {
+                            name: 'Rameswaram',
+                            image: 'tn4.jpeg',
+                            description: 'Rameswaram is a pilgrimage destination famous for its temples and beautiful beaches in Tamil Nadu.',
+                            likes:0
+                        },
+                        {
+                            name: 'Kanyakumari',
+                            image: 'tn5.jpg',
+                            description: 'Kanyakumari is the southernmost tip of India and known for its unique sunrise and sunset views.',
+                            likes:0
+                        },
+                        {
+                            name: 'Mahabalipuram',
+                            image: 'tn6.jpeg',
+                            description: 'Mahabalipuram is a testament to the architectural and artistic brilliance of the Pallava dynasty, which ruled the region during the 7th and 8th centuries.',
+                            likes:0
+                        }
+                    ]
+                },
+                {
+                    name: 'Kerala',
+                    showPlaces: false,
+                    image: 'kerala.jpeg',
+                    places: [
+                        {
+                            name: 'Alappuzha',
+                            image: 'kerala1.jpeg',
+                            description: 'Alappuzha, also known as Alleppey, is famous for its serene backwaters and houseboat cruises.',
+                            likes:0
+                        },
+                        {
+                            name: 'Munnar',
+                            image: 'kerala2.jpeg',
+                            description: 'Munnar is a hill station in Kerala, known for its lush tea gardens and cool climate.',
+                            likes:0
+                        },
+                        {
+                            name: 'Kochi',
+                            image: 'kerala3.jpg',
+                            description: 'Kochi, also known as Cochin, is a coastal city with a rich history and a blend of various cultures.',
+                            likes:0
+                        },
+                        {
+                            name: 'Thekkady',
+                            image: 'kerala4.jpeg',
+                            description: 'Thekkady is known for the Periyar National Park, offering opportunities for wildlife and nature enthusiasts.',
+                            likes:0
+                        },
+                        {
+                            name: 'Varkala',
+                            image: 'kerala5.jpeg',
+                            description: 'Varkala is a coastal town with pristine beaches and stunning cliff views in Kerala.',
+                            likes:0
+                        },
+                        {
+                            name: 'Wayanad',
+                            image: 'kerala6.jpeg',
+                            description: 'Wayanad is a beautiful hilly region known for its lush green landscapes and natural beauty.',
+                            likes:0
+                        }
+                    ]
+                },
+                {
+                    name: 'Karnataka',
+                    showPlaces: false,
+                    image: 'karnataka.jpeg',
+                    places: [
+                        {
+                            name: 'Bangalore',
+                            image: 'karnataka1.jpg',
+                            description: 'The capital of Karnataka, known for its vibrant culture, technology, and gardens.',
+                            likes:0
+                        },
+                        {
+                            name: 'Mysore',
+                            image: 'karnataka2.jpeg',
+                            description: 'Famous for its royal heritage, magnificent palaces, and the Dussehra festival.',
+                            likes:0
+                        
+                        },
+                        {
+                            name: 'Coorg',
+                            image: 'karnataka3.jpeg',
+                            description: 'Known as the Scotland of India, Coorg is a beautiful hill station with coffee plantations.',
+                            likes:0
+                        },
+                        {
+                            name: 'Hampi',
+                            image: 'karnataka4.jpeg',
+                            description: 'Hampi is a UNESCO World Heritage Site known for its ancient ruins and temples.',
+                            likes:0
+                        },
+                        {
+                            name: 'Gokarna',
+                            image: 'karnataka5.jpeg',
+                            description: 'A serene beach destination and a pilgrimage town with beautiful temples.',
+                            likes:0
+                        },
+                        {
+                            name: 'Chikmagalur',
+                            image: 'karnataka6.jpeg',
+                            description: 'Famous for its coffee estates, Chikmagalur is a perfect place for nature lovers.',
+                            likes:0
+                        }
+                    ]
+                },
+                {
+                    name: 'Andhra Pradesh',
+                    showPlaces: false,
+                    image: 'andhra.jpeg',
+                    places: [
+                        {
+                            name: 'Vizag',
+                            image: 'ap1.jpeg',
+                            description: 'Visakhapatnam, often called Vizag, is a coastal city in Andhra Pradesh known for its beautiful beaches, industries, and a rich cultural heritage.',
+                            likes:0
+                        },
+                        {
+                            name: 'Amaravati',
+                            image: 'ap2.jpg',
+                            description: 'Amaravati is the new capital city of Andhra Pradesh, known for its modern infrastructure and historical significance.',
+                            likes:0
+                        },
+                        {
+                            name: 'Tirupati',
+                            image: 'ap3.jpg',
+                            description: 'Tirupati is a major pilgrimage destination known for the famous Sri Venkateswara Temple, one of the wealthiest religious sites in the world.',
+                            likes:0
+                        },
+                        {
+                            name: 'Kakinada',
+                            image: 'ap4.jpeg',
+                            description: 'Kakinada is a coastal city with beautiful beaches and a significant hub for the oil and natural gas industry.',
+                            likes:0
+                        },
+                        {
+                            name: 'Vijayawada',
+                            image: 'ap5.jpeg',
+                            description: 'Vijayawada is a bustling city located on the banks of the Krishna River, known for its vibrant culture and economic significance.',
+                            likes:0
+                        },
+                        {
+                            name: 'Horsley Hills',
+                            image: 'ap6.jpeg',
+                            description: 'Horsley Hills is a serene hill station in Andhra Pradesh, India, known for its lush greenery and cool climate.',
+                            likes:0
+                        }
+                    ]
+                }
+                // Define more states with their respective tourist places here
+            ];
+           
+            $scope.toggleState = function (state) {
+                if (state.showPlaces) {
+                    state.showPlaces = false;
+                } else {
+                    // Hide places for all other states
+                    angular.forEach($scope.states, function (otherState) {
+                        if (otherState !== state) {
+                            otherState.showPlaces = false;
+                        }
+                    });
+                    state.showPlaces = true;
+                }
+            };
+
+            $scope.currentDateTime = new Date();
+            $interval(function () {
+                $scope.currentDateTime = new Date();
+            }, 5000);
+
+            $scope.toggleLike = function (place) {
+  place.liked = !place.liked;
+  $http.post('/api/like-place', { name: place.name, liked: place.liked, state: place.state })
+    .then(function (response) {
+      // Handle success
+      console.log(response.data.message);
+    })
+    .catch(function (error) {
+      // Handle error
+      console.error(error.data.error);
+    });
+};
+
+        });
+    </script>
+</html>

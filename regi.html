@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    /* Add your custom CSS styles here */
+    body {
+      background-image: url('lo.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Keyframe animation for .login-container */
+@keyframes containerFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+/* Keyframe animation for h1 */
+@keyframes textBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.login-container {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+  margin: 100px auto;
+  padding: 100px;
+  max-width: 400px;
+  height: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  animation: containerFadeIn 1s ease-in-out; /* Apply the animation to the .login-container */
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 40px;
+  font-style: italic;
+  font-weight: bold;
+  animation: textBounce 3s ease-in-out infinite; /* Apply the animation to the h1 element */
+}
+
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 22px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    input {
+      width: 100%;
+      padding: 20px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;  font-size: 20px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    button {
+      background-color: #0074D9;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 15px;
+      font-style: italic;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    button:hover {
+      background-color: #05223c;
+    }
+
+    p {
+      text-align: center;
+      color: red;
+    }
+
+  </style>
+</head>
+<body ng-app="myApp">
+  <div ng-controller="RegistrationController" class="login-container">
+    <h1>Registration</h1>
+    <form ng-submit="registerUser()">
+      <label for="username">Username:</label>
+      <input type="text" id="username" ng-model="user.username" required>
+      <br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" ng-model="user.password" required>
+      <br>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    var app = angular.module('myApp', []);
+
+    app.controller('RegistrationController', function ($scope, $http) {
+      $scope.user = {};
+
+      $scope.registerUser = function () {
+        // Send an HTTP POST request to register the user
+        $http.post('/api/register', $scope.user)
+    .then(function (response) {
+        // Handle registration success (e.g., display a success message) and navigate to index.html.
+        $scope.registrationMessage = 'Registration successful. You can now log in.';
+        window.location.href = 'index.html';
+    })
+
+          .catch(function (error) {
+            // Handle registration failure (e.g., display an error message).
+            console.error('Registration failed: ', error.data.message);
+            $scope.registrationMessage = 'Registration failed: ' + error.data.message;
+          });
+      };
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Website Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+            background: url('front.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .rating-section {
+            margin: 20px;
+        }
+
+        .stars {
+            font-size: 36px;
+            cursor: pointer;
+            transform: scale(1);
+            transition: transform 0.2s;
+        }
+
+        .star {
+            color: black;
+            margin: 5px;
+        }
+
+        .star.filled {
+            color: gold;
+        }
+
+        textarea {
+            width: 95%;
+            height: 100px;
+            margin: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            transition: border-color 0.3s, transform 0.3s;
+            background-color: rgb(218, 221, 219);
+        }
+
+        textarea:focus {
+            border-color: #4CAF50;
+            transform: scale(1.02);
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45A446;
+        }
+
+        .feedback-list {
+            margin: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .feedback {
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            width: 300px;
+            transform: rotateY(0deg);
+            transition: transform 0.5s, background-color 0.3s;
+        }
+
+        .feedback.active {
+            transform: rotateY(360deg);
+            background-color: #eaf4ea;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            
+        }
+
+        .animated-text {
+            font-size: 46px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            animation: bounce 1s infinite;
+            font-size: 42px; /* You can adjust the font size */
+            font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Text color */
+    background-color: #c6e7d9; /* Background color */
+    padding: 10px; /* Add some padding around the heading */
+    border: 1px solid #67ad9c; /* Add a border */
+    border-radius: 5px; /* Rounded corners */
+    text-align: center; /* Center the text horizontally */
+        
+        font-weight: bold;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Text color */
+    background-color: #d0eaee;; /* Background color */
+    padding: 10px; /* Add some padding around the heading */
+    border: 1px solid #ddd; /* Add a border */
+    border-radius: 5px; /* Rounded corners */
+    text-align: center; /* Center the text horizontally */
+}
+button {
+    background-color:#4384a4; /* Background color */
+    color: white; /* Text color */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    border-radius: 5px; /* Rounded corners */
+}
+
+button:hover {
+    background-color:  #4CAF50; /* Background color on hover */
+}
+
+
+    </style>
+</head>
+<body>
+    <h1 class="animated-text">Awesome Tourist App Feedback</h1>
+
+    <!-- Rating Section -->
+    <div class="rating-section">
+        <h2>Rate our tourist app</h2>
+        <div class="stars">
+            <span class="star" onclick="rateWebsite(1)">&#9733;</span>
+            <span class="star" onclick="rateWebsite(2)">&#9733;</span>
+            <span class="star" onclick="rateWebsite(3)">&#9733;</span>
+            <span class="star" onclick="rateWebsite(4)">&#9733;</span>
+            <span class="star" onclick="rateWebsite(5)">&#9733;</span>
+        </div>
+        <p>Your rating: <span id="currentRating">0</span>/5</p>
+    </div>
+
+    <!-- Comment Section -->
+    <textarea id="comment" placeholder="Enter your feedback"></textarea>
+    <button onclick="submitComment()">Submit Feedback</button>
+
+    <!-- Display Feedback -->
+    <div class="feedback-list" id="feedback-container"></div>
+
+    <script>
+        // ... your JavaScript code remains the same
+            let currentRating = 0;
+        let feedbackCount = 0;
+
+        function rateWebsite(rating) {
+        currentRating = rating;
+        document.getElementById('currentRating').innerText = rating;
+        
+        // Change star colors based on the selected rating
+        const stars = document.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.classList.add('filled');
+            } else {
+                star.classList.remove('filled');
+            }
+        });
+    }
+
+        function submitComment() {
+            const commentText = document.getElementById('comment').value;
+            if (currentRating === 0 || commentText.trim() === '') {
+                alert('Please rate and provide feedback before submitting.');
+                return;
+            }
+
+            const feedbackContainer = document.getElementById('feedback-container');
+
+            // Create a new feedback item
+            const feedbackItem = document.createElement('div');
+            feedbackItem.className = 'feedback';
+            feedbackItem.innerHTML = `
+                <p><strong>Rating: ${currentRating}/5</strong></p>
+                <p>${commentText}</p>
+            `;
+
+            // Insert the feedback item into the container
+            feedbackContainer.insertBefore(feedbackItem, feedbackContainer.firstChild);
+            feedbackCount++;
+
+            // Clear the input fields
+            currentRating = 0;
+            document.getElementById('currentRating').innerText = '0';
+            document.getElementById('comment').value = '';
+
+            // If the feedback count exceeds 5, remove the oldest feedback
+            if (feedbackCount > 5) {
+                feedbackContainer.removeChild(feedbackContainer.lastChild);
+            }
+        }
+    
+    </script>
+</body>
+</html>

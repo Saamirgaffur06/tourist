@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Startup Page</title>
+    <style>
+        body {
+            background-image: url('front.png'); /* Replace 'background.jpg' with your image file */
+            background-size: cover; /* Cover the entire viewport */
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Fixed background */
+            background-position: center center; /* Center the background image */
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+        }
+        .startup-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .fade-in {
+            animation: fadeIn 4s;
+            font-size: 125px;
+            color: rgb(6, 6, 6);
+            
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        #airplane {
+            width: 300px;
+            cursor: pointer;
+            animation: moveAirplane 3s linear forwards;
+        }
+
+        @keyframes moveAirplane {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        #disclaimer {
+            animation: fadeIn 6s;
+            font-size: 30px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body ng-controller="StartupController">
+    <div class="startup-container">
+        <h1 class="fade-in" style="margin-top: 70px;">Incredible India!!</h1>
+
+        <!-- Replace the button with an airplane image -->
+        <img id="airplane" src="airplane.png" alt="Airplane" ng-click="goToMainPage()"><br>
+        <div id="disclaimer" class="disclaimer">To Explore, Press the Aeroplane</div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("StartupController", function ($scope, $window) {
+            $scope.goToMainPage = function () {
+                $window.location.href = "main.html";
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tourist App</title>
+    <style>
+       body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        background: url('front.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        padding: 20px;
+        text-align: center;
+        overflow: hidden; /* Hide overflow to prevent horizontal scrollbar */
+    }
+
+    /* Add keyframes for the animation */
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    /* Apply animation to the h1 element */
+    h1 {
+        font-size: 2.5rem;
+        color: #333;
+        opacity: 0;
+        animation: fade-in 2s ease-in-out forwards; /* Play the animation and maintain the final state */
+    }
+
+    p {
+        font-size: 1.25rem;
+        color: #666;
+    }
+
+    .services-container {
+    max-width: 900px;
+    margin: 0 auto; /* Horizontally center the container */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center the container */
+    align-items: center; /* Horizontally center the content inside the container */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.7); /* Adjust the last value (alpha) for transparency */
+    transition: transform 0.2s ease-in-out;
+    background-image: url('your-background-image.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+
+    .services-container:hover {
+        transform: scale(1.05);
+    }
+
+    .app-description {
+        text-align: left;
+        margin-top: 20px;
+    }
+
+    .app-description h2 {
+        font-size: 1.75rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .app-description p {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    /* Additional styling for tourist app elements */
+    .tourist-app {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+
+    .tourist-app h3 {
+        font-size: 1.5rem;
+        color: #333;
+    }
+
+    .tourist-app p {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .tourist-app-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+
+    .tourist-app-button:hover {
+        background-color: #0056b3;
+    }
+    </style>
+</head>
+<body>
+    <h1 id="app-title" style="font-size: 50px;font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif;">Wanderlust App </h1>
+    <div class="services-container">
+        <p style="font-size: 20px;font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif;">We offer a wide range of services to make your travel experience exceptional.</p>
+        
+        <div class="app-description">
+            <center><h1 style="font-size: 30px;font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif;">Discover Your Adventure</h1></center>
+            <p style="font-size: 20px;font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif;">Explore the world with our comprehensive tourist app. Get access to travel guides, local recommendations, and much more.</p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".services-container").hover(function () {
+                $(this).css("transform", "scale(1.05)");
+            }, function () {
+                $(this).css("transform", "scale(1)");
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            background: url('front.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            animation: fade-in 1.5s ease;
+        }
+        p {
+            font-size: 1.25rem;
+            color: #666;
+            animation: fade-in 1.5s ease 0.5s; /* Delay the animation */
+        }
+
+        /* Keyframes for the fade-in animation */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* Optional: Add a slight upward movement */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .text-container {
+    background-color: rgba(255, 255, 255, 0.7); /* Adjust the last value (alpha) for transparency */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: fit-content;
+    margin: 0 auto;
+}
+
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 50px;font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif;">About Us</h1>
+    <div class="text-container">
+        <p style="font-size: 20px; font-weight: bold; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+          We are passionate travelers sharing our experiences and recommendations.
+        </p>
+      </div>
+      
+</body>
+</html>

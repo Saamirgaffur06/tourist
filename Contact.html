@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            background: url('front.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+        p {
+            font-size: 1.25rem;
+            color: #666;
+        }
+        .contact-info {
+    max-width: 1200px; /* Set the maximum width you desire */
+    background-color: rgba(255, 255, 255, 0.7); /* Adjust the last value (alpha) for transparency */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Horizontally center the container */
+}
+
+
+        /* Keyframes for speed and slow-motion animations */
+        @keyframes speed-animation {
+            0% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slow-motion-animation {
+            0% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Apply animations to elements */
+        h1 {
+            animation: speed-animation 0.5s ease-in-out;
+        }
+
+        p {
+            animation: slow-motion-animation 2s ease-in-out;
+        }
+
+        .contact-info {
+            animation: speed-animation 1s ease-in-out 1.5s;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 50px;font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif;">Contact Us</h1>
+    <div class="contact-info">
+    <p style="font-size: 30px;font-weight:bold;font-family:Verdana, Geneva, Tahoma, sans-serif;">Have questions or suggestions? Feel free to get in touch with us!</p>
+    
+        <p style="font-size: 30px;font-family: Verdana, Geneva, Tahoma, sans-serif;">Email: Wanderlust@touristblog.com</p>
+        <p style="font-size: 20px;;font-family: Verdana, Geneva, Tahoma, sans-serif;"> Phone: +91 6383173991</p>
+    </div>
+</body>
+</html>
